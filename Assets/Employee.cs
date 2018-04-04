@@ -13,4 +13,8 @@ public class Employee : MonoSingleton<Employee> {
 	void Update () {
 		
 	}
+    public void ShowMain()
+    {
+
+    }
 }

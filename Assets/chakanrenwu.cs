@@ -11,7 +11,7 @@ public class chakanrenwu : MonoBehaviour {
     // Use this for initialization
     void Start () {
         a = new daytaskinfoModel();
-        chaxun.onClick.AddListener(delegate { chaxunButtonClick(); });
+        chaxun.onClick.AddListener(chaxunButtonClick);
 	}
 	
 	// Update is called once per frame
@@ -21,10 +21,14 @@ public class chakanrenwu : MonoBehaviour {
     public void chaxunButtonClick()
     {
         Debug.Log(1);
+        for(int i = 0; i < gird.childCount; i++)
+        {
+            Destroy(gird.GetChild(i).gameObject);
+        }
         if (yuangongbianhao.text == "")
         {
-            
 
+            sqlstr = "select* from daytaskinfo";
             List<ArrayList> models=DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
             Debug.Log(models.Count); 
             foreach (ArrayList i in models)
@@ -35,7 +39,8 @@ public class chakanrenwu : MonoBehaviour {
                 a.mmouth= i[3].ToString();
                 a.task_title= i[4].ToString();
                 a.task_content= i[5].ToString();
-                GameObject go = Resources.Load<GameObject>("yuangongchakanrenwuItem");
+                //Debug.Log(a.id);
+                GameObject go = GameObject.Instantiate( Resources.Load<GameObject>("yuangongchakanrenwuItem"));
                 go.transform.SetParent(gird);
                 go.transform.GetChild(0).GetComponent<Text>().text = a.id.ToString();
                 go.transform.GetChild(1).GetComponent<Text>().text = a.dep_name.ToString();
@@ -49,28 +54,39 @@ public class chakanrenwu : MonoBehaviour {
             }
         }else
         {
-            
-            List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
-            foreach (ArrayList i in models)
+            for (int i = 0; i < gird.childCount; i++)
             {
-                a.id = int.Parse(i[0].ToString());
-                a.dep_name = i[1].ToString();
-                a.yyear = i[2].ToString();
-                a.mmouth = i[3].ToString();
-                a.task_title = i[4].ToString();
-                a.task_content = i[5].ToString();
-                GameObject go = Resources.Load<GameObject>("yuangongchakanrenwuItem");
-                go.transform.SetParent(gird);
-                go.transform.GetChild(0).GetComponent<Text>().text = a.id.ToString();
-                go.transform.GetChild(1).GetComponent<Text>().text = a.dep_name.ToString();
-                go.transform.GetChild(2).GetComponent<Text>().text = a.yyear + "-" + a.mmouth;
-                go.transform.GetChild(3).GetComponent<Text>().text = a.task_title;
-                //Debug.Log(a.id + a.pname + a.to_time);
-                //foreach (var go in i)
-                //{
-                //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
-                //}
+                Destroy(gird.GetChild(i).gameObject);
             }
+            sqlstr = "select* from daytaskinfo where id="+ yuangongbianhao.text;
+            List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
+            if (models!=null)
+            {
+                foreach (ArrayList i in models)
+                {
+                    a.id = int.Parse(i[0].ToString());
+                    a.dep_name = i[1].ToString();
+                    a.yyear = i[2].ToString();
+                    a.mmouth = i[3].ToString();
+                    a.task_title = i[4].ToString();
+                    a.task_content = i[5].ToString();
+                    GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("yuangongchakanrenwuItem"));
+                    go.transform.SetParent(gird);
+                    go.transform.GetChild(0).GetComponent<Text>().text = a.id.ToString();
+                    go.transform.GetChild(1).GetComponent<Text>().text = a.dep_name.ToString();
+                    go.transform.GetChild(2).GetComponent<Text>().text = a.yyear + "-" + a.mmouth;
+                    go.transform.GetChild(3).GetComponent<Text>().text = a.task_title;
+                    //Debug.Log(a.id + a.pname + a.to_time);
+                    //foreach (var go in i)
+                    //{
+                    //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
+                    //}
+                }
+            }else
+            {
+
+            }
+           
         }
     }
 }

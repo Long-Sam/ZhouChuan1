@@ -9,12 +9,13 @@ public class Login : MonoBehaviour {
     public Button denglu;
     public Button chongzhi;
     public Button tuichu;
-	// Use this for initialization
-	void Start () {
+    public GameObject sys;
+    public GameObject admin;
+    public GameObject employee;
+    // Use this for initialization
+    void Start () {
         chongzhi.onClick.AddListener(delegate {
             name.text = ""; pwd.text = ""; shenfen.value = 0;
-           
-
         });
         denglu.onClick.AddListener(delegate { 
             if (name.text == "" || pwd.text == "")
@@ -24,62 +25,121 @@ public class Login : MonoBehaviour {
                 return;
             }
             List<ArrayList> go=new List<ArrayList>();
-            switch (shenfen.itemText.ToString())
+            Debug.Log(shenfen.captionText.text.ToString());
+            switch (shenfen.captionText.text.ToString())
             {
+               
                 case "普通员工":
-                    go = DataBaseTool.Instance.ExcSelectMoreSql("select * from employeeinfo where username='" + name.text + "';");
-                    if (go[0][0] == null)
+                    try
+                    {
+                        go = DataBaseTool.Instance.ExcSelectMoreSql("select * from employeeinfo where username='" + name.text + "';");
+                    }
+                    catch
                     {
                         Order.Instance.ShowTip("普通员工不存在该账户");
+                        break;
+                    }
+                   
+                    
+                    if (go.Count==0)
+                    {
+                        Order.Instance.ShowTip("普通员工不存在该账户");
+                        Debug.Log("普通员工不存在该账户");
                         return;
-                    }
-                    if (go[0][2].ToString() == pwd.text)
+                    }else
                     {
-                        Order.Instance.ShowTip("登陆成功");
-                    }
-                    else
-                    {
-                        Order.Instance.ShowTip("密码输入错误");
+                        if (go[0][2].ToString() == pwd.text)
+                        {
+                            Order.Instance.ShowTip("登陆成功");
+                            PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
+                            Debug.Log("登陆成功");
+                            employee.gameObject.SetActive(true);
+                            this.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            Order.Instance.ShowTip("密码输入错误");
+                            Debug.Log("密码输入错误");
+                        }
                     }
                     break;
                 case "管理员":
-                   go = DataBaseTool.Instance.ExcSelectMoreSql("select * from departmentInfo where username='" + name.text + "';");
-                    if (go[0][0] == null)
+                    try
                     {
+                        go = DataBaseTool.Instance.ExcSelectMoreSql("select * from departmentinfo where dep_id='" + name.text + "';");
+                        Debug.Log(1);
+                    }
+                    catch
+                    {
+                        Debug.Log(2);
+                        Order.Instance.ShowTip("管理员不存在该账户");
+                        break;
+                    }
+                    Debug.Log(go);
+                    if (go.Count == 0)
+                    {
+                        Debug.Log(4);
                         Order.Instance.ShowTip("管理员不存在该账户");
                         return;
                     }
-                    if (go[0][4].ToString() == pwd.text)
-                    {
-                        Order.Instance.ShowTip("登陆成功");
-                    }
                     else
                     {
-                        Order.Instance.ShowTip("密码输入错误");
+                        if (go[0][4].ToString() == pwd.text)
+                        {
+                            Order.Instance.ShowTip("登陆成功");
+                            PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
+                            admin.gameObject.SetActive(true);
+                            this.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            Order.Instance.ShowTip("密码输入错误");
+                        }
                     }
                     break;
                 case "系统管理":
-                   go = DataBaseTool.Instance.ExcSelectMoreSql("select * from admin where username='" + name.text + "';");
-                    if (go[0][0] == null)
+                    try
+                    {
+                        go = DataBaseTool.Instance.ExcSelectMoreSql("select * from admin where pname='" + name.text + "';");
+                    }
+                    catch
+                    {
+                        Order.Instance.ShowTip("系统管理不存在该账户");
+                        break;
+                    }
+                    
+                    if (go.Count==0)
                     {
                         Order.Instance.ShowTip("系统管理不存在该账户");
                         return;
                     }
-                    if (go[0][5].ToString() == pwd.text)
-                    {
-                        Order.Instance.ShowTip("登陆成功");
-                    }
                     else
                     {
-                        Order.Instance.ShowTip("密码输入错误");
+                        if (go[0][5].ToString() == pwd.text)
+                        {
+                            Order.Instance.ShowTip("登陆成功");
+                            PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
+                            sys.gameObject.SetActive(true);
+                            this.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            Order.Instance.ShowTip("密码输入错误");
+                        }
                     }
+                   
                     break;
+               
+
             }
-            name.text = ""; pwd.text = ""; shenfen.value = 0;
+           // Debug.Log(go[0][2]+"   "+ shenfen.captionText.ToString());
+            name.text = ""; pwd.text = ""; //shenfen.value = 0;
         });
         tuichu.onClick.AddListener(Application.Quit);
     }
-	
 	// Update is called once per frame
 	void Update () {
 		

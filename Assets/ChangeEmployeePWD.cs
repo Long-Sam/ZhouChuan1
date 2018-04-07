@@ -23,10 +23,13 @@ public class ChangeEmployeePWD : MonoBehaviour {
                 }
                 if (oldpwd.text != PlayerPrefs.GetString("PWD"))
                 {
+                    Debug.Log(PlayerPrefs.GetString("PWD"));
                     Order.Instance.ShowTip("旧密码输入错误！！");
                 }else
                 {
                     DataBaseTool.Instance.ExcuteNonQuerySql("UPDATE `employeeinfo` SET `password`='"+ newpwd .text+ "' WHERE `id`='"+PlayerPrefs.GetInt("id")+"';");
+                    Order.Instance.ShowTip("修改密码成功！！");
+                    Employee.Instance.ShowMain();
                 }
             }else
             {

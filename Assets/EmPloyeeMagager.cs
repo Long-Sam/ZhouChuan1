@@ -140,4 +140,9 @@ public class EmPloyeeMagager : MonoBehaviour {
 	void Update () {
 		
 	}
+    public void OnAddYuanGongButtonClick()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+    }
 }

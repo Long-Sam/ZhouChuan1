@@ -21,7 +21,7 @@ public class DataBaseTool
 	private	DataBaseTool ()
 	{
 		string datapath =
-            string.Format("Server={0};Database={1};User ID={2};Password={3};Port={4}", "127.0.0.1", "efficiency", "root", "13920714643", "3306");
+            string.Format("Server={0};Database={1};User ID={2};Password={3};Port={4}", "39.108.170.235", "efficiency", "root", "Sjy_1994_02", "3306");
 
 
         try

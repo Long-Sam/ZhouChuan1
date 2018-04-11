@@ -27,7 +27,7 @@ public class meiribaogao : MonoBehaviour {
             // 1/22/2017 3:43:19 PM ;
             try
             {
-                DataBaseTool.Instance.ExcuteNonQuerySql("insert into logInfo (`id`, `username`, `log_title`, `log_time`, `log_content`) VALUES ('" + PlayerPrefs.GetInt("id")+ "', '" + PlayerPrefs.GetString("name") + "', '" + biaoti.text + "', '" + dt.ToString() + "',  '" + neirong.text + "');");
+                DataBaseTool.Instance.ExcuteNonQuerySql("insert into loginfo (`id`, `username`, `log_title`, `log_time`, `log_content`) VALUES ('" + PlayerPrefs.GetInt("id")+ "', '" + PlayerPrefs.GetString("name") + "', '" + biaoti.text + "', '" + dt.ToString() + "',  '" + neirong.text + "');");
                 biaoti.text = ""; neirong.text = "";
                 Order.Instance.ShowTip("提交成功！");
                 zhuye.gameObject.SetActive(true); this.gameObject.SetActive(false);

@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ChangeEmployeePWD : MonoBehaviour {
+public class adminXiugaimima : MonoBehaviour {
+
 
     public InputField oldpwd;
     public InputField newpwd;
     public InputField renewpwd;
     public Button queding;
     public Button quxiao;
-    public EmPloyeeButtons embutton;
+    //public Admin embutton;
     // Use this for initialization
-    void Start () {
-        quxiao.onClick.AddListener(delegate { embutton.button0(); });
+    void Start()
+    {
+        quxiao.onClick.AddListener(delegate { Admin.Instance.ShowMain(); });
         queding.onClick.AddListener(delegate
         {
-            if(oldpwd.text!=""&& newpwd.text != "" && renewpwd.text != "")
+            if (oldpwd.text != "" && newpwd.text != "" && renewpwd.text != "")
             {
                 if (newpwd.text != renewpwd.text)
                 {
@@ -26,25 +28,26 @@ public class ChangeEmployeePWD : MonoBehaviour {
                 {
                     Debug.Log(PlayerPrefs.GetString("PWD"));
                     Order.Instance.ShowTip("旧密码输入错误！！");
-                }else
+                }
+                else
                 {
-                    DataBaseTool.Instance.ExcuteNonQuerySql("UPDATE `employeeinfo` SET `password`='"+ newpwd .text+ "' WHERE `id`='"+PlayerPrefs.GetInt("id")+"';");
+                    DataBaseTool.Instance.ExcuteNonQuerySql("UPDATE `departmentinfo` SET `dep_pwd`='" + newpwd.text + "' WHERE `id`='" + PlayerPrefs.GetInt("id") + "';");
                     Order.Instance.ShowTip("修改密码成功！！");
                     oldpwd.text = "";
                     newpwd.text = "";
                     renewpwd.text = "";
-                    Employee.Instance.ShowMain();
+                    Admin.Instance.ShowMain();
                 }
-            }else
+            }
+            else
             {
                 Order.Instance.ShowTip("密码不能为空！！");
             }
 
         });
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

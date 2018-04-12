@@ -52,6 +52,7 @@ public class Login : MonoBehaviour {
                         {
                             Order.Instance.ShowTip("登陆成功");
                             PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetString("name", name.text);
                             PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
                             Debug.Log("登陆成功");
                             employee.gameObject.SetActive(true);
@@ -89,6 +90,7 @@ public class Login : MonoBehaviour {
                         {
                             Order.Instance.ShowTip("登陆成功");
                             PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetString("name", name.text);
                             PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
                             admin.gameObject.SetActive(true);
                             this.gameObject.SetActive(false);
@@ -121,6 +123,7 @@ public class Login : MonoBehaviour {
                         {
                             Order.Instance.ShowTip("登陆成功");
                             PlayerPrefs.SetString("PWD", pwd.text);
+                            PlayerPrefs.SetString("name", name.text);
                             PlayerPrefs.SetInt("id", int.Parse(go[0][0].ToString()));
                             sys.gameObject.SetActive(true);
                             this.gameObject.SetActive(false);

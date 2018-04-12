@@ -24,13 +24,18 @@ public class shedingyuangongrenwu : MonoBehaviour {
             Dropdown.OptionData o = new Dropdown.OptionData();
             o.text = i[1].ToString();
             bumenxiala.options.Add(o);
+            bumenxiala.value=-1 ;
         }
         
         fanhui.onClick.AddListener(Admin.Instance.ShowMain);
         tijiao.onClick.AddListener( delegate {
             if (id.text != "" && nian.text != "" && zhuti.text != "" && neirong.text != "") {
-                DataBaseTool.Instance.ExcuteNonQuerySql("insert into daytaskinfo (`id`, `dep_name`, `yyear`, `mmouth`, `task_title`,'task_content') VALUES ('" + id.text+ "', '" + bumenxiala.captionText.text + "', '" + nian.text + "', '" +yue.ToString() + "',  '" + zhuti.text + "','"+neirong.text+"');");
+                DataBaseTool.Instance.ExcuteNonQuerySql("insert into daytaskinfo (`id`, `dep_name`, `yyear`, `mmoth`, `task_title`,task_content) VALUES ('" + id.text+ "', '" + bumenxiala.captionText.text + "', '" + nian.text + "', '" +yue.text.ToString() + "',  '" + zhuti.text + "','"+neirong.text+"');");
                 Order.Instance.ShowTip("添加任务成功！");
+                transform.parent.GetChild(0).gameObject.SetActive(true);
+                id.text = ""; nian.text = ""; zhuti.text = ""; neirong.text = "";
+                nian.text = "";yue.text = "";neirong.text = "";
+                this.gameObject.SetActive(false);
             } else
             {
                 Order.Instance.ShowTip("请填写完整！");

@@ -33,7 +33,7 @@ public class Order : MonoSingleton<Order> {
     {
         GameObject go =GameObject.Instantiate( Resources.Load<GameObject>("Tip"));
         go.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        go.GetComponent<RectTransform>().anchoredPosition = new Vector2(373, 260);
+        go.GetComponent<RectTransform>().anchoredPosition = new Vector2(430, 320);
         go.GetComponent<Text>().text = str;
 
     }

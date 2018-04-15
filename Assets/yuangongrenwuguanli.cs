@@ -23,6 +23,11 @@ public class yuangongrenwuguanli : MonoBehaviour {
     {
 
     }
+    public void chakanmeiribaogaoButton()
+    {
+        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.transform.GetChild(2).gameObject.SetActive(true);
+    }
     public void chaxunButtonClick()
     {
         Debug.Log(1);

@@ -16,7 +16,7 @@ public class adminshanchu : MonoBehaviour {
 	}
     public void OnShanchuClick()
     {
-        GameObject gird = GameObject.Find("Canvas/Administrator/Manage employee informationUI (1)/Body/body/gird");
+        GameObject gird = GameObject.Find("Canvas/SysAdministrator/Manage employee informationUI/main/Body/body/gird");
         string str= transform.parent.GetChild(0).GetComponent<Text>().text;
         for (int i = 0; i < gird.transform.childCount; i++)
         {

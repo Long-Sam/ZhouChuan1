@@ -15,7 +15,7 @@ public class AdminButtons : MonoBehaviour {
             mianban[1].gameObject.SetActive(true);
             for (int i = 0; i < mianban[1].transform.childCount; i++) { mianban[1].transform.GetChild(i).gameObject.SetActive(false); }
             mianban[1].transform.GetChild(0).gameObject.SetActive(true); });
-        buttons[2].onClick.AddListener(delegate { for (int i = 0; i < mianban.Length; i++) { mianban[i].gameObject.SetActive(false); } mianban[2].gameObject.SetActive(true); mianban[2].transform.GetChild(0).gameObject.SetActive(true); mianban[2].transform.GetChild(1).gameObject.SetActive(false); });
+        buttons[2].onClick.AddListener(delegate { for (int i = 0; i < mianban.Length; i++) { mianban[i].gameObject.SetActive(false); } mianban[2].gameObject.SetActive(true); mianban[2].transform.GetChild(0).gameObject.SetActive(true); mianban[2].transform.GetChild(1).gameObject.SetActive(false); mianban[2].transform.GetChild(2).gameObject.SetActive(false); });
         buttons[3].onClick.AddListener(delegate { for (int i = 0; i < mianban.Length; i++) { mianban[i].gameObject.SetActive(false); } mianban[3].gameObject.SetActive(true); });
         buttons[4].onClick.AddListener(delegate { for (int i = 0; i < mianban.Length; i++) { mianban[i].gameObject.SetActive(false); } mianban[4].gameObject.SetActive(true); });
         //buttons[3].onClick.AddListener(delegate { for (int i = 0; i < mianban.Length; i++) { mianban[i].gameObject.SetActive(false); } mianban[3].gameObject.SetActive(true); });

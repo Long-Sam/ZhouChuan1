@@ -26,6 +26,7 @@ public class Login : MonoBehaviour {
             }
             List<ArrayList> go=new List<ArrayList>();
             Debug.Log(shenfen.captionText.text.ToString());
+           // Order.Instance.ShowTip("denglu");
             switch (shenfen.captionText.text.ToString())
             {
                
@@ -33,6 +34,7 @@ public class Login : MonoBehaviour {
                     try
                     {
                         go = DataBaseTool.Instance.ExcSelectMoreSql("select * from employeeinfo where username='" + name.text + "';");
+                       // Order.Instance.ShowTip("puton");
                     }
                     catch
                     {

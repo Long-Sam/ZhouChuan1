@@ -31,7 +31,7 @@ public class AddEmployee : MonoBehaviour {
             //bumenxiala.
         }
         tijiao.onClick.AddListener(delegate {
-            if (id.text != "" && name.text != "" && pwd.text != "")
+            if (id.text != "" && name.text != "" && pwd.text != ""&& dianhua.text!=""&& shenfenzheng.text!=""&& Email.text!="")
             {
                 string sql = "INSERT INTO `employeeinfo` (`username`, `password`, `position`, `educationInfo`, `xingming`, `dianhua`, `shenfenzheng`, `shouji`, `email`, `dizhi`, `xingbie`, `shengri`) VALUES('" + id.text + "', '" + pwd.text + "', '" + bumenxiala.captionText.text.ToString() + "', '" + xueli.captionText.text.ToString() + "', '" + name.text + "',  '" + dianhua.text + "',  '" + shenfenzheng.text + "',  '" + shoujihao.text + "',  '" + Email.text + "',  '" + jiatingdizhi.text + "',  '" + xingbie.captionText.text.ToString() + "',  '" + chushengriqi.text + "');";
                 //DataBaseTool.Instance.ExcuteNonQuerySql("insert into employeeinfo (`username`, `password`, `position`, `educationInfo`,'xingming','dianhua','shenfhenzheng','shouji','email','dizhi','xingbie','shengri')VALUES ('" + id.text + "', '" + pwd.text + "', '" + bumenxiala.captionText.text.ToString() + "', '" + xueli.captionText.text.ToString() + "',  '" + name.text + "',  '" + dianhua.text + "',  '" + shenfenzheng.text + "',  '" + shoujihao.text + "',  '" + Email.text + "',  '" + jiatingdizhi.text + "' , '" + xingbie.captionText.text.ToString() + "',  '" + chushengriqi.text + "');");

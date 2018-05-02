@@ -26,6 +26,9 @@ public class EmPloyeeMagager : MonoBehaviour {
             {
                 Destroy(gird.GetChild(i).gameObject);
             }
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                         new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x, 550);
+            int o = 0;
             if (yuangongbianhao.text != "")
             {
                 string sqlstr = "select* from employeeinfo where id='"+ yuangongbianhao.text + "';";
@@ -36,6 +39,7 @@ public class EmPloyeeMagager : MonoBehaviour {
                     foreach (ArrayList i in models)
                     {
                         //Debug.Log(a.id);
+                        o += 1;
                         GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("adminchakanrenwuItem"));
                         go.transform.SetParent(gird);
                         go.transform.GetChild(0).GetComponent<Text>().text = i[0].ToString();
@@ -44,9 +48,18 @@ public class EmPloyeeMagager : MonoBehaviour {
                         go.transform.GetChild(3).GetComponent<Text>().text = i[12].ToString();
                         go.transform.GetChild(4).GetComponent<Text>().text = i[3].ToString();
                         go.transform.GetChild(5).GetComponent<Text>().text = i[4].ToString();
-                       
+                        if (o > 9)
+                        {
+                            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                        new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                        gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                        + gird.GetComponent<GridLayoutGroup>().spacing.y);
+                        }
+                          
                     }
-                }else
+                    gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
+                }
+                else
                 {
                     Order.Instance.ShowTip("没有此id的人");
                 }
@@ -59,9 +72,11 @@ public class EmPloyeeMagager : MonoBehaviour {
                 Debug.Log(models.Count);
                 if (models.Count != 0)
                 {
+                  
                     foreach (ArrayList i in models)
                     {
                         //Debug.Log(a.id);
+                        o++;
                         GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("adminchakanrenwuItem"));
                         go.transform.SetParent(gird);
                         go.transform.GetChild(0).GetComponent<Text>().text = i[0].ToString();
@@ -70,8 +85,14 @@ public class EmPloyeeMagager : MonoBehaviour {
                         go.transform.GetChild(3).GetComponent<Text>().text = i[12].ToString();
                         go.transform.GetChild(4).GetComponent<Text>().text = i[3].ToString();
                         go.transform.GetChild(5).GetComponent<Text>().text = i[4].ToString();
-
+                        if (o > 9)
+                            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                          new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                          gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                          + gird.GetComponent<GridLayoutGroup>().spacing.y);
                     }
+
+                    gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
                 }
                 else
                 {
@@ -83,11 +104,13 @@ public class EmPloyeeMagager : MonoBehaviour {
                 string sqlstr = "select* from employeeinfo";
                 List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
                 //Debug.Log(models.Count);
+          
                 if (models.Count != 0)
                 {
                     foreach (ArrayList i in models)
                     {
                         //Debug.Log(a.id);
+                        o += 1;
                         GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("adminchakanrenwuItem"));
                         go.transform.SetParent(gird);
                         go.transform.GetChild(0).GetComponent<Text>().text = i[0].ToString();
@@ -96,8 +119,13 @@ public class EmPloyeeMagager : MonoBehaviour {
                         go.transform.GetChild(3).GetComponent<Text>().text = i[12].ToString();
                         go.transform.GetChild(4).GetComponent<Text>().text = i[3].ToString();
                         go.transform.GetChild(5).GetComponent<Text>().text = i[4].ToString();
-
+                        if (o > 9)
+                            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                          new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                          gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                          + gird.GetComponent<GridLayoutGroup>().spacing.y);
                     }
+                    gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000,0);
                 }
                 else
                 {
@@ -114,6 +142,7 @@ public class EmPloyeeMagager : MonoBehaviour {
                     foreach (ArrayList i in models)
                     {
                         //Debug.Log(a.id);
+                        o++;
                         GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("adminchakanrenwuItem"));
                         go.transform.SetParent(gird);
                         go.transform.GetChild(0).GetComponent<Text>().text = i[0].ToString();
@@ -122,8 +151,13 @@ public class EmPloyeeMagager : MonoBehaviour {
                         go.transform.GetChild(3).GetComponent<Text>().text = i[12].ToString();
                         go.transform.GetChild(4).GetComponent<Text>().text = i[3].ToString();
                         go.transform.GetChild(5).GetComponent<Text>().text = i[4].ToString();
-
+                        if (o > 9)
+                            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                          new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                          gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                          + gird.GetComponent<GridLayoutGroup>().spacing.y);
                     }
+                    gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
                 }
                 else
                 {

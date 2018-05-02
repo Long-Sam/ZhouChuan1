@@ -37,12 +37,15 @@ public class yuangongrenwuguanli : MonoBehaviour {
         }
         if (yuangongbianhao.text == "")
         {
-
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                       new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x, 550);
+            int o = 0;
             sqlstr = "select* from daytaskinfo";
             List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
             Debug.Log(models.Count);
             foreach (ArrayList i in models)
             {
+                o++;
                 a.id = int.Parse(i[0].ToString());
                 a.dep_name = i[1].ToString();
                 a.yyear = i[2].ToString();
@@ -56,12 +59,16 @@ public class yuangongrenwuguanli : MonoBehaviour {
                 go.transform.GetChild(1).GetComponent<Text>().text = a.dep_name.ToString();
                 go.transform.GetChild(2).GetComponent<Text>().text = a.yyear + "-" + a.mmouth;
                 go.transform.GetChild(3).GetComponent<Text>().text = a.task_title;
-                //Debug.Log(a.id + a.pname + a.to_time);
-                //foreach (var go in i)
-                //{
-                //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
-                //}
+                if (o > 9)
+                {
+                    gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                + gird.GetComponent<GridLayoutGroup>().spacing.y);
+                }
+
             }
+            gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
         }
         else
         {
@@ -71,10 +78,14 @@ public class yuangongrenwuguanli : MonoBehaviour {
             }
             sqlstr = "select* from daytaskinfo where id=" + yuangongbianhao.text;
             List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                      new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x, 550);
+            int o = 0;
             if (models != null)
             {
                 foreach (ArrayList i in models)
                 {
+                    o++;
                     a.id = int.Parse(i[0].ToString());
                     a.dep_name = i[1].ToString();
                     a.yyear = i[2].ToString();
@@ -87,12 +98,16 @@ public class yuangongrenwuguanli : MonoBehaviour {
                     go.transform.GetChild(1).GetComponent<Text>().text = a.dep_name.ToString();
                     go.transform.GetChild(2).GetComponent<Text>().text = a.yyear + "-" + a.mmouth;
                     go.transform.GetChild(3).GetComponent<Text>().text = a.task_title;
-                    //Debug.Log(a.id + a.pname + a.to_time);
-                    //foreach (var go in i)
-                    //{
-                    //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
-                    //}
+                    if (o > 9)
+                    {
+                        gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                    new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                    gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                    + gird.GetComponent<GridLayoutGroup>().spacing.y);
+                    }
+
                 }
+                gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
             }
             else
             {

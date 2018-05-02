@@ -30,9 +30,13 @@ public class chakanrenwu : MonoBehaviour {
 
             sqlstr = "select* from daytaskinfo";
             List<ArrayList> models=DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
-            Debug.Log(models.Count); 
+            Debug.Log(models.Count);
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+              new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,550);
+            int o = 0;
             foreach (ArrayList i in models)
             {
+                o += 1;
                 a.id = int.Parse(i[0].ToString());
                 a.dep_name = i[1].ToString();
                 a.yyear = i[2].ToString();
@@ -51,19 +55,29 @@ public class chakanrenwu : MonoBehaviour {
                 //{
                 //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
                 //}
+                if(o>9)
+                gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+              new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+              gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+              + gird.GetComponent<GridLayoutGroup>().spacing.y);
             }
-        }else
+            gird.GetComponent<RectTransform>().position = new Vector2(gird.GetComponent<RectTransform>().position.x, -10000);
+        }
+        else
         {
             for (int i = 0; i < gird.childCount; i++)
             {
                 Destroy(gird.GetChild(i).gameObject);
             }
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+            new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x, 550);
             sqlstr = "select* from daytaskinfo where id="+ yuangongbianhao.text;
             List<ArrayList> models = DataBaseTool.Instance.ExcSelectMoreSql(sqlstr);
             if (models!=null)
-            {
+            { int o = 0;
                 foreach (ArrayList i in models)
                 {
+                    o += 1;
                     a.id = int.Parse(i[0].ToString());
                     a.dep_name = i[1].ToString();
                     a.yyear = i[2].ToString();
@@ -82,7 +96,16 @@ public class chakanrenwu : MonoBehaviour {
                     //    Debug.Log(go.ToString() + "   \n" + go.GetType() + "   " + i.GetType());
                     //}
                 }
-            }else
+                if (o > 9)
+                {
+                    gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+           new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+           gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+           + gird.GetComponent<GridLayoutGroup>().spacing.y);
+                }
+                gird.GetComponent<RectTransform>().position = new Vector2(gird.GetComponent<RectTransform>().position.x, -10000);
+            }
+            else
             {
 
             }

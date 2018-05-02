@@ -18,6 +18,14 @@ public class yuangongrenwushanchu : MonoBehaviour {
     public void ShanchuButtonClick()
     {
         GameObject gird= GameObject.Find("Canvas/Administrator/yuangongrenwuguanli/main/Panel/body/Body/gird");
+        try
+        {
+            Debug.Log(gird.name);
+        }
+        catch
+        {
+            gird = GameObject.Find("Canvas/Administrator/yuangongrenwuguanli/main/Panel/body/Body/gird");
+        }
         // DataBaseTool.Instance.ExcuteNonQuerySql()
         //GameObject gird = GameObject.Find("Canvas/Administrator/Manage employee informationUI (1)/Body/body/gird");
         string str = transform.parent.GetChild(0).GetComponent<Text>().text;

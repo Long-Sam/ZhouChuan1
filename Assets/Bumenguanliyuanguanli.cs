@@ -41,9 +41,13 @@ public class Bumenguanliyuanguanli : MonoSingleton<Bumenguanliyuanguanli> {
         Debug.Log(bumen.Count);
         if (bumen.Count != 0)
         {
+            gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                     new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x, 550);
+            int o = 0;
             foreach (ArrayList i in bumen)
             {
                 //Debug.Log(a.id);
+                o++;
                 GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("guanliyuanxinxi"));
                 go.transform.SetParent(gird);
                 go.transform.GetChild(0).GetComponent<Text>().text = i[0].ToString();
@@ -53,8 +57,16 @@ public class Bumenguanliyuanguanli : MonoSingleton<Bumenguanliyuanguanli> {
                 go.transform.GetChild(4).GetComponent<Text>().text = i[1].ToString();
                 //go.transform.GetChild(4).GetComponent<Text>().text = i[3].ToString();
                 //go.transform.GetChild(5).GetComponent<Text>().text = i[4].ToString();
+                if (o >9)
+                {
+                    gird.gameObject.GetComponent<RectTransform>().sizeDelta =
+                new Vector2(gird.gameObject.GetComponent<RectTransform>().sizeDelta.x,
+                gird.gameObject.GetComponent<RectTransform>().sizeDelta.y + gird.GetComponent<GridLayoutGroup>().cellSize.y
+                + gird.GetComponent<GridLayoutGroup>().spacing.y);
+                }
 
             }
+            gird.GetComponent<RectTransform>().localPosition = new Vector3(0, -10000, 0);
         }
         else
         {
